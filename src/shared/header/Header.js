@@ -1,7 +1,7 @@
 import React, { useContext } from "react";
 import { Link, NavLink } from "react-router-dom";
-
 import { FaUserAlt } from "react-icons/fa";
+import logo from "../../assets/images/logo.png";
 
 const Header = () => {
   // const { user } = useContext();
@@ -136,7 +136,10 @@ const Header = () => {
               />
             </svg>
           </label>
-          <Link to="/">Alike New</Link>
+          <Link to="/" className="flex items-center">
+            <img src={logo} alt="" className="h-10 mr-1" />
+            Alike New
+          </Link>
           {user?.email && (
             <p className="ml-10 text-secondary-accent font-medium hidden md:flex  items-center">
               <FaUserAlt className="mr-2" /> {user?.displayName}

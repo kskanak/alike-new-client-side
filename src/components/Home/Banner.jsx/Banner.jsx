@@ -5,7 +5,7 @@ const Banner = () => {
   return (
     <div>
       <div
-        className="hero h-[600px]"
+        className="hero h-96 md:h-[600px]"
         style={{ backgroundImage: `url(${img})` }}
       >
         <div className="hero-overlay bg-opacity-60"></div>
@@ -15,7 +15,10 @@ const Banner = () => {
             <p className="mb-5">
               Welcome to Alike New. Whether you are looking for an upgrade or
               ready to sell, Used Motorcycle Store is your one-stop-shop for all
-              things two-wheeled!
+              things two-wheeled! We are passionate motorcycle enthusiasts
+              changing the way that riders buy motorcycles. In an increasingly
+              digital world, sometimes you need to get away, and we can help you
+              do that.
             </p>
           </div>
         </div>
