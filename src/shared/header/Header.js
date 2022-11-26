@@ -1,11 +1,24 @@
 import React, { useContext } from "react";
-import { Link, NavLink } from "react-router-dom";
+import { Link, NavLink, useNavigate } from "react-router-dom";
 import { FaUserAlt } from "react-icons/fa";
 import logo from "../../assets/images/logo.png";
 import { AuthContext } from "../../context/AuthProvider";
+import toast from "react-hot-toast";
 
 const Header = () => {
-  const { user } = useContext(AuthContext);
+  const { user, logOut } = useContext(AuthContext);
+  const navigate = useNavigate();
+
+  const handleSignOut = () => {
+    logOut()
+      .then(() => {
+        toast.success("Sign Out successfull");
+        navigate("/");
+      })
+      .catch((error) => {
+        toast.error(error.message);
+      });
+  };
 
   const menuItem = (
     <>
@@ -100,7 +113,7 @@ const Header = () => {
         {user?.email ? (
           <button
             className="text-secondary font-medium"
-            // onClick={handleSignOut}
+            onClick={handleSignOut}
           >
             {" "}
             SignOut

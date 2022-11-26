@@ -4,6 +4,7 @@ import Home from "../../components/Home/Home";
 import Login from "../../components/Login.jsx/Login";
 import SignUp from "../../components/SignUp/SignUp";
 import Main from "../../layout/Main";
+import PrivateRoutes from "./PrivateRoutes/PrivateRoutes";
 
 const router = createBrowserRouter([
   {
@@ -19,7 +20,11 @@ const router = createBrowserRouter([
         loader: async ({ params }) => {
           return fetch(`http://localhost:5000/catagoryItems/${params.id}`);
         },
-        element: <CatagoryItem></CatagoryItem>,
+        element: (
+          <PrivateRoutes>
+            <CatagoryItem></CatagoryItem>
+          </PrivateRoutes>
+        ),
       },
     ],
   },
