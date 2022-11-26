@@ -11,7 +11,7 @@ const Sellers = () => {
       return data;
     },
   });
-  console.log(sellers);
+
   if (isLoading) {
     return (
       <div className="flex items-center justify-center h-screen">
