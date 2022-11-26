@@ -10,9 +10,13 @@ const Banner = () => {
       >
         <div className="hero-overlay bg-opacity-60"></div>
         <div className="hero-content text-center text-neutral-content">
-          <div className="max-w-md">
+          <div className="md:w-full">
             <h1 className="mb-5 text-5xl font-bold"> Alike New</h1>
-            <p className="mb-5">Welcome to Alike New</p>
+            <p className="mb-5">
+              Welcome to Alike New. Whether you are looking for an upgrade or
+              ready to sell, Used Motorcycle Store is your one-stop-shop for all
+              things two-wheeled!
+            </p>
           </div>
         </div>
       </div>
