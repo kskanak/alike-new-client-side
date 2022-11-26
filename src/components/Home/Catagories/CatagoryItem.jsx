@@ -1,11 +1,13 @@
 import React, { useState } from "react";
 import { useLoaderData } from "react-router-dom";
+import BookingModal from "./BookingModal";
 import CatagoryItemCard from "./CatagoryItemCard";
 
 const CatagoryItem = () => {
   const items = useLoaderData();
 
   const [catagoryName, setCatagoryName] = useState("");
+  const [item, setItem] = useState("");
 
   return (
     <div>
@@ -17,10 +19,12 @@ const CatagoryItem = () => {
           <CatagoryItemCard
             key={item._id}
             item={item}
+            setItem={setItem}
             setCatagoryName={setCatagoryName}
           ></CatagoryItemCard>
         ))}
       </div>
+      <BookingModal item={item}></BookingModal>
     </div>
   );
 };

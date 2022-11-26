@@ -42,7 +42,7 @@ const Header = () => {
         </NavLink>
       </li>
 
-      <li className="md:pl-8">
+      {/* <li className="md:pl-8">
         <NavLink
           to="/appointment"
           className={({ isActive }) =>
@@ -53,7 +53,7 @@ const Header = () => {
         >
           Appoinment
         </NavLink>
-      </li>
+      </li> */}
 
       {user?.email && (
         <li className="md:pl-8">

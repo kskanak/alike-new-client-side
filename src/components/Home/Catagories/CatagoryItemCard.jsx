@@ -1,6 +1,6 @@
 import React from "react";
 
-const CatagoryItemCard = ({ item, setCatagoryName }) => {
+const CatagoryItemCard = ({ item, setCatagoryName, setItem }) => {
   const {
     catagory,
     catagory_id,
@@ -24,7 +24,7 @@ const CatagoryItemCard = ({ item, setCatagoryName }) => {
         </figure>
 
         <div className="card-body  md:justify-center">
-          <h2 className="card-title">{catagory}</h2>
+          <h2 className="card-title">{product_name}</h2>
           <h2> Added By : {seller_name}</h2>
           <h2> From : {location}</h2>
           <h2> Brand :{catagory}</h2>
@@ -36,7 +36,14 @@ const CatagoryItemCard = ({ item, setCatagoryName }) => {
             <div className="price">
               <h2>Sell-price : {sell_price}</h2>
               <h2>Sell-price : {original_price} </h2>
-              <button className="btn btn-primary">Book Now</button>
+
+              <label
+                htmlFor="Booking-modal"
+                onClick={() => setItem(item)}
+                className="btn border-none  p-3 rounded-lg font-bold text-white bg-gradient-to-r from-secondary-accent to-primary-sky cursor-pointer"
+              >
+                Book Now
+              </label>
             </div>
           </div>
         </div>

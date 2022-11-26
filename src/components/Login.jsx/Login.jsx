@@ -63,7 +63,7 @@ const Login = () => {
       .then((result) => {
         const user = result.user;
         saveUserInfoToDb(user.displayName, user.email);
-        // navigate(from, { replace: true });
+        navigate(from, { replace: true });
         toast.success("Sign in with Google");
       })
       .catch((error) => {
@@ -176,8 +176,8 @@ const Login = () => {
           />
         </form>
         <p className="px-6 text-xs text-center dark:text-gray-400 my-4">
-          New to Doctors Portal ?
-          <Link to="/register" className="text-secondary-accent ml-1">
+          New to Alike New ?
+          <Link to="/signup" className="text-secondary-accent ml-1">
             Create new account
           </Link>
         </p>
