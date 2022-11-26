@@ -2,10 +2,11 @@ import React, { useContext } from "react";
 import { Link, NavLink } from "react-router-dom";
 import { FaUserAlt } from "react-icons/fa";
 import logo from "../../assets/images/logo.png";
+import { AuthContext } from "../../context/AuthProvider";
 
 const Header = () => {
-  // const { user } = useContext();
-  const user = {};
+  const { user } = useContext(AuthContext);
+
   const menuItem = (
     <>
       <li className="md:pl-8">
