@@ -1,4 +1,6 @@
 import { createBrowserRouter } from "react-router-dom";
+import Buyers from "../../components/Dashboard/Buyers/Buyers";
+import Sellers from "../../components/Dashboard/Sellers/Sellers";
 import CatagoryItem from "../../components/Home/Catagories/CatagoryItem";
 import Home from "../../components/Home/Home";
 import Login from "../../components/Login.jsx/Login";
@@ -29,7 +31,14 @@ const router = createBrowserRouter([
       },
     ],
   },
-  { path: "/dashboard", element: <Dashboard></Dashboard> },
+  {
+    path: "/dashboard",
+    element: <Dashboard></Dashboard>,
+    children: [
+      { path: "/dashboard/sellers", element: <Sellers></Sellers> },
+      { path: "/dashboard/buyers", element: <Buyers></Buyers> },
+    ],
+  },
 ]);
 
 export default router;

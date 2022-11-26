@@ -20,19 +20,13 @@ const Dashboard = () => {
         <div className="drawer-side">
           <label htmlFor="dashboard-drawyer" className="drawer-overlay"></label>
           <ul className="menu p-4 w-80 bg-base-100 text-base-content">
-            <li className="mb-2">
-              <Link to="/dashboard">My Appointment</Link>
-            </li>
             {/* {isAdmin && ( */}
             <>
               <li>
                 <Link to="/dashboard/sellers">Seller</Link>
               </li>
               <li>
-                <Link to="/dashboard/adddoctor">Buyers</Link>
-              </li>
-              <li>
-                <Link to="/dashboard/managedoctors">Manage Doctor</Link>
+                <Link to="/dashboard/buyers">Buyers</Link>
               </li>
             </>
             {/* )} */}
