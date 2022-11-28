@@ -39,7 +39,7 @@ const Sellers = () => {
           .then((res) => res.json())
           .then((data) => {
             if (data.deletedCount > 0) {
-              Swal.fire("Deleted!", "Your file has been deleted.", "success");
+              Swal.fire("Deleted!", "Seller has been deleted.", "success");
               refetch();
             }
           })

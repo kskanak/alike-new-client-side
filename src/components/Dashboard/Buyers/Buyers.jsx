@@ -31,13 +31,13 @@ const Buyers = () => {
         fetch(`http://localhost:5000/allbuyer/${buyer?._id}`, {
           method: "DELETE",
           headers: {
-            authorization: `Bearer ${localStorage.getItem("AppointmentToken")}`,
+            authorization: `Bearer ${localStorage.getItem("alikeNewToken")}`,
           },
         })
           .then((res) => res.json())
           .then((data) => {
             if (data.deletedCount > 0) {
-              Swal.fire("Deleted!", "Your file has been deleted.", "success");
+              Swal.fire("Deleted!", "Buyer has been deleted.", "success");
               refetch();
             }
           })

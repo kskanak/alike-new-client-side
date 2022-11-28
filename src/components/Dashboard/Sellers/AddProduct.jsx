@@ -41,7 +41,7 @@ const AddProduct = () => {
             condition: conditon,
             original_price: data.originalPrice,
             catagory: catagory,
-            email: data.email,
+            email: user?.email,
             img: imageData.data.image.url,
           };
           // save product  to db
