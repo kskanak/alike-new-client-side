@@ -25,9 +25,6 @@ const Dashboard = () => {
         <div className="drawer-side">
           <label htmlFor="dashboard-drawyer" className="drawer-overlay"></label>
           <ul className="menu p-4 w-80 bg-base-100 text-base-content">
-            <li className="mb-2">
-              <Link to="/dashboard">My Appointment</Link>
-            </li>
             {isAdmin && (
               <>
                 <li className="mb-2">

@@ -84,32 +84,6 @@ const Header = () => {
       </li>
 
       <li className="md:pl-8">
-        <NavLink
-          to="/reviews"
-          className={({ isActive }) =>
-            isActive
-              ? "py-2 md:p-2 rounded-lg bg-slate-600 text-slate-300"
-              : undefined
-          }
-        >
-          Reviews
-        </NavLink>
-      </li>
-
-      <li className="md:pl-8">
-        <NavLink
-          to="/contactUs"
-          className={({ isActive }) =>
-            isActive
-              ? "py-2 md:p-2 rounded-lg bg-slate-600 text-slate-300"
-              : undefined
-          }
-        >
-          Contact-Us
-        </NavLink>
-      </li>
-
-      <li className="md:pl-8">
         {user?.email ? (
           <button
             className="text-secondary font-medium"

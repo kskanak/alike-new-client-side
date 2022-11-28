@@ -1,6 +1,7 @@
 import { async } from "@firebase/util";
 import { useQuery } from "@tanstack/react-query";
 import React from "react";
+import toast from "react-hot-toast";
 import Swal from "sweetalert2";
 
 const Sellers = () => {
@@ -48,6 +49,26 @@ const Sellers = () => {
     });
   };
 
+  // verify seller
+
+  const handleVerify = (id) => {
+    fetch(`http://localhost:5000/verifyseller/${id}`, {
+      method: "PUT",
+      headers: {
+        authorization: `Bearer ${localStorage.getItem("alikeNewToken")}`,
+      },
+    })
+      .then((res) => res.json())
+      .then((data) => {
+        console.log(data);
+        if (data.modifiedCount > 0) {
+          toast.info("seller verified given");
+          refetch();
+        }
+      })
+      .catch((error) => console.log(error.message));
+  };
+
   if (isLoading) {
     return (
       <div className="flex items-center justify-center h-screen">
@@ -66,6 +87,7 @@ const Sellers = () => {
               <th>Seller Id</th>
               <th>Seller</th>
               <th>Email</th>
+              <th>Verified</th>
               <th>Delete</th>
             </tr>
           </thead>
@@ -79,6 +101,20 @@ const Sellers = () => {
                     <td>{seller.user}</td>
                     <td>{seller.email}</td>
 
+                    <td>
+                      {seller?.status === "verified" ? (
+                        <button className="btn btn-sm btn-primary">
+                          Verified
+                        </button>
+                      ) : (
+                        <button
+                          className="btn btn-sm btn-accent"
+                          onClick={() => handleVerify(seller?._id)}
+                        >
+                          Verify
+                        </button>
+                      )}
+                    </td>
                     <td>
                       <button
                         className="btn btn-sm btn-error"
