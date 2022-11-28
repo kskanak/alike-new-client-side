@@ -71,7 +71,7 @@ const Buyers = () => {
             {buyers?.length &&
               buyers?.map((buyer, index) => {
                 return (
-                  <tr className="hover" key={buyers._id}>
+                  <tr className="hover" key={buyer._id}>
                     <th>{index + 1}</th>
                     <td>{buyer._id}</td>
                     <td>{buyer.user}</td>

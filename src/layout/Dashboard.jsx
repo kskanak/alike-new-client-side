@@ -2,12 +2,14 @@ import React, { useContext } from "react";
 import { Link, Outlet } from "react-router-dom";
 import { AuthContext } from "../context/AuthProvider";
 import useAdmin from "../hooks/useAdmin";
+import useUserRole from "../hooks/useUserRole";
 import Header from "../shared/header/Header";
 
 const Dashboard = () => {
   const { user } = useContext(AuthContext);
   const [isAdmin] = useAdmin(user?.email);
-
+  const userRole = useUserRole(user?.email);
+  console.log(userRole);
   return (
     <div>
       <Header></Header>
@@ -28,13 +30,28 @@ const Dashboard = () => {
             </li>
             {isAdmin && (
               <>
-                <li>
+                <li className="mb-2">
                   <Link to="/dashboard/sellers">Seller</Link>
                 </li>
-                <li>
+                <li className="mb-2">
                   <Link to="/dashboard/buyers">Buyers</Link>
                 </li>
               </>
+            )}
+            {userRole === "seller" && (
+              <>
+                <li className="mb-2">
+                  <Link to="/dashboard/addproduct">Add Product</Link>
+                </li>
+                <li className="mb-2">
+                  <Link to="/dashboard/myproduct">My Product</Link>
+                </li>
+              </>
+            )}
+            {userRole === "buyer" && (
+              <li>
+                <Link to="/dashboard/myorders">My Orders</Link>
+              </li>
             )}
           </ul>
         </div>
