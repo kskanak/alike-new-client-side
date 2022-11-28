@@ -44,7 +44,7 @@ const MyProducts = () => {
             if (data.deletedCount > 0) {
               Swal.fire(
                 "Deleted!",
-                "Your Product has been deleted.",
+                "Your Product has been deleted successfully.",
                 "success"
               );
               refetch();
