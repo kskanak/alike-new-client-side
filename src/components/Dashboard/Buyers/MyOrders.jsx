@@ -8,12 +8,19 @@ const MyOrders = () => {
   const [myOrders, setMyOrders] = useState([]);
   const [loading, setLoading] = useState(true);
   useEffect(() => {
-    axios.get(`http://localhost:5000/myorders/${user?.email}`).then((data) => {
-      setMyOrders(data.data);
-      setLoading(false);
-    });
+    axios
+      .get(`http://localhost:5000/myorders/${user?.email}`, {
+        headers: {
+          "content-type": "application/json",
+          authorization: `Bearer ${localStorage.getItem("alikeNewToken")}`,
+        },
+      })
+      .then((data) => {
+        setMyOrders(data.data);
+        setLoading(false);
+      });
   }, [user?.email]);
-  console.log(myOrders);
+
   if (loading) {
     <div className="flex items-center justify-center h-96">
       <div className="w-16 h-16 border-4 border-dashed rounded-full animate-spin border-violet-400"></div>

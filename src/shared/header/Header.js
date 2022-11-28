@@ -72,14 +72,14 @@ const Header = () => {
 
       <li className="md:pl-8">
         <NavLink
-          to="/about"
+          to="/blog"
           className={({ isActive }) =>
             isActive
               ? "py-2 md:p-2 rounded-lg bg-slate-600 text-slate-300"
               : undefined
           }
         >
-          About
+          Blog
         </NavLink>
       </li>
 

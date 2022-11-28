@@ -1,12 +1,12 @@
 import { useQuery } from "@tanstack/react-query";
-import React, { useContext } from "react";
+import React, { useContext, useState } from "react";
 import toast from "react-hot-toast";
 import Swal from "sweetalert2";
 import { AuthContext } from "../../../context/AuthProvider";
 
 const MyProducts = () => {
   const { user } = useContext(AuthContext);
-  console.log(user?.email);
+  const [isadvertise, setIsAdvertise] = useState(false);
   const {
     data: myProducts = [],
     isLoading,
@@ -59,8 +59,11 @@ const MyProducts = () => {
   // handle advertise
 
   const handleAdvertise = (product) => {
+    console.log(product);
     const advertiseProduct = {
       name: product.product_name,
+      productId: product._id,
+      catagory: product.catagory,
       img: product.img,
       price: product.sell_price,
       orginal_price: product.original_price,
@@ -76,7 +79,6 @@ const MyProducts = () => {
       .then((res) => res.json())
       .then((data) => {
         if (data.acknowledged) {
-          console.log(data);
           toast.success("advertise Confirmed");
         } else {
           toast.error(data.message);
@@ -122,10 +124,12 @@ const MyProducts = () => {
                         </button>
                       ) : (
                         <button
-                          className="btn btn-sm btn-accent"
+                          className={`btn btn-sm ${
+                            isadvertise ? "btn-accent" : " btn-primary"
+                          }`}
                           onClick={() => handleAdvertise(product)}
                         >
-                          Advertise
+                          {isadvertise ? "Advertised" : "Advertise"}
                         </button>
                       )}
                     </td>
