@@ -22,9 +22,11 @@ const router = createBrowserRouter([
       { path: "/signup", element: <SignUp></SignUp> },
       { path: "/login", element: <Login></Login> },
       {
-        path: "/catagory/:id",
+        path: "/catagory/:catagory",
         loader: async ({ params }) => {
-          return fetch(`http://localhost:5000/catagoryItems/${params.id}`);
+          return fetch(
+            `http://localhost:5000/catagoryItemss/${params.catagory}`
+          );
         },
         element: (
           <PrivateRoutes>

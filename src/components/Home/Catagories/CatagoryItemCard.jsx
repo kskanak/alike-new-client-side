@@ -35,12 +35,12 @@ const CatagoryItemCard = ({ item, setCatagoryName, setItem }) => {
           <div className="card-actions md:justify-end">
             <div className="price">
               <h2>Sell-price : {sell_price}</h2>
-              <h2>Sell-price : {original_price} </h2>
+              <h2>Original-price : {original_price} </h2>
 
               <label
                 htmlFor="Booking-modal"
                 onClick={() => setItem(item)}
-                className="btn border-none  p-3 rounded-lg font-bold text-white bg-gradient-to-r from-secondary-accent to-primary-sky cursor-pointer"
+                className="btn border-none  p-3 mt-3 rounded-lg font-bold text-white bg-gradient-to-r from-secondary-accent to-primary-sky cursor-pointer"
               >
                 Book Now
               </label>

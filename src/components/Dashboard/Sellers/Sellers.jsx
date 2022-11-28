@@ -33,7 +33,7 @@ const Sellers = () => {
         fetch(`http://localhost:5000/doctors/${seller?._id}`, {
           method: "DELETE",
           headers: {
-            authorization: `Bearer ${localStorage.getItem("AppointmentToken")}`,
+            authorization: `Bearer ${localStorage.getItem("alikeNewToken")}`,
           },
         })
           .then((res) => res.json())

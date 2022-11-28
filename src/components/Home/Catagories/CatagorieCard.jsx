@@ -5,7 +5,7 @@ const CatagorieCard = ({ catagori }) => {
   const { id, name, icon, bgClass } = catagori;
   return (
     <div>
-      <Link to={`/catagory/${id}`}>
+      <Link to={`/catagory/${name}`}>
         <div
           className={` shadow-xl h-56 flex items-center justify-center md:justify-start px-6 rounded-lg mb-6 md:mb-0 ${bgClass}`}
         >
