@@ -1,5 +1,6 @@
 import { useQuery } from "@tanstack/react-query";
 import React, { useContext } from "react";
+import toast from "react-hot-toast";
 import Swal from "sweetalert2";
 import { AuthContext } from "../../../context/AuthProvider";
 
@@ -55,6 +56,35 @@ const MyProducts = () => {
     });
   };
 
+  // handle advertise
+
+  const handleAdvertise = (product) => {
+    const advertiseProduct = {
+      name: product.product_name,
+      img: product.img,
+      price: product.sell_price,
+      orginal_price: product.original_price,
+    };
+
+    fetch("http://localhost:5000/advertise", {
+      method: "POST",
+      headers: {
+        "content-type": "application/json",
+      },
+      body: JSON.stringify(advertiseProduct),
+    })
+      .then((res) => res.json())
+      .then((data) => {
+        if (data.acknowledged) {
+          console.log(data);
+          toast.success("advertise Confirmed");
+        } else {
+          toast.error(data.message);
+        }
+      })
+      .catch((error) => toast.error(error.message));
+  };
+
   if (isLoading) {
     <div className="flex items-center justify-center h-96">
       <div className="w-16 h-16 border-4 border-dashed rounded-full animate-spin border-violet-400"></div>
@@ -93,7 +123,7 @@ const MyProducts = () => {
                       ) : (
                         <button
                           className="btn btn-sm btn-accent"
-                          // onClick={() => handleAdvertise(product?._id)}
+                          onClick={() => handleAdvertise(product)}
                         >
                           Advertise
                         </button>
