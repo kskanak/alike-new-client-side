@@ -16,6 +16,9 @@ const Login = () => {
   const [email, setEmail] = useState(" ");
   const [signInUserEmail, setSignInUserEmail] = useState("");
   const [token] = useToken(signInUserEmail);
+  if (token) {
+    navigate(from, { replace: true });
+  }
   const {
     register,
     formState: { errors },
@@ -64,7 +67,6 @@ const Login = () => {
       .then((result) => {
         const user = result.user;
         saveUserInfoToDb(user.displayName, user.email);
-        navigate(from, { replace: true });
         toast.success("Sign in with Google");
       })
       .catch((error) => {

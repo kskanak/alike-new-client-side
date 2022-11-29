@@ -1,3 +1,4 @@
+import { useQuery } from "@tanstack/react-query";
 import React, { useContext, useState } from "react";
 import { useForm } from "react-hook-form";
 import toast from "react-hot-toast";
@@ -10,7 +11,22 @@ const AddProduct = () => {
   const [conditon, setCondition] = useState("");
   const [catagory, setCatagory] = useState("");
   const navigate = useNavigate();
-  console.log(postDate, conditon, catagory);
+
+  const {
+    data: seller = [],
+    isLoading,
+    refetch,
+  } = useQuery({
+    queryKey: ["email", "seller"],
+    queryFn: async () => {
+      const res = await fetch(`http://localhost:5000/seller/${user?.email}`);
+      const data = await res.json();
+      return data;
+    },
+  });
+
+  console.log(seller.status);
+
   const {
     register,
     formState: { errors },
@@ -34,6 +50,7 @@ const AddProduct = () => {
           const product = {
             product_name: data.name,
             sell_price: data.price,
+            status: seller.status,
             years_used: data.yearused,
             seller_name: user?.displayName,
             post_time: postDate,

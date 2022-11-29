@@ -2,6 +2,8 @@ import { async } from "@firebase/util";
 import { useQuery } from "@tanstack/react-query";
 import React from "react";
 import toast from "react-hot-toast";
+import { FaTrashAlt } from "react-icons/fa";
+import { TiTickOutline } from "react-icons/ti";
 import Swal from "sweetalert2";
 
 const Sellers = () => {
@@ -103,9 +105,7 @@ const Sellers = () => {
 
                     <td>
                       {seller?.status === "verified" ? (
-                        <button className="btn btn-sm btn-primary">
-                          Verified
-                        </button>
+                        <TiTickOutline className="text-4xl text-blue-300" />
                       ) : (
                         <button
                           className="btn btn-sm btn-accent"
@@ -116,12 +116,10 @@ const Sellers = () => {
                       )}
                     </td>
                     <td>
-                      <button
-                        className="btn btn-sm btn-error"
+                      <FaTrashAlt
+                        className="text-3xl text-red-500 cursor-pointer"
                         onClick={() => handleDeleteSeller(seller)}
-                      >
-                        Delete
-                      </button>
+                      />
                     </td>
                   </tr>
                 );

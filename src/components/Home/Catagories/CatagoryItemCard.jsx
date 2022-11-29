@@ -1,11 +1,29 @@
-import React from "react";
+import { useQuery } from "@tanstack/react-query";
+import React, { useContext } from "react";
+import { AuthContext } from "../../../context/AuthProvider";
 
 const CatagoryItemCard = ({ item, setCatagoryName, setItem }) => {
+  const { user } = useContext(AuthContext);
+
+  const {
+    data: seller = [],
+    isLoading,
+    refetch,
+  } = useQuery({
+    queryKey: ["email", "seller"],
+    queryFn: async () => {
+      const res = await fetch(`http://localhost:5000/seller/${user?.email}`);
+      const data = await res.json();
+      return data;
+    },
+  });
+
   const {
     catagory,
     catagory_id,
     condition,
     img,
+    status,
     location,
     original_price,
     post_time,
@@ -25,7 +43,8 @@ const CatagoryItemCard = ({ item, setCatagoryName, setItem }) => {
 
         <div className="card-body  md:justify-center">
           <h2 className="card-title">{product_name}</h2>
-          <h2> Added By : {seller_name}</h2>
+          <h2> Seller Name : {seller_name}</h2>
+          {status === "verified" && <h2> Added By Verified Seller</h2>}
           <h2> From : {location}</h2>
           <h2> Brand :{catagory}</h2>
           <h2> Condition : {condition}</h2>

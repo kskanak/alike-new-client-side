@@ -4,6 +4,7 @@ import { useForm } from "react-hook-form";
 import { GoogleAuthProvider } from "firebase/auth";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import toast from "react-hot-toast";
+import useToken from "../../hooks/useToken";
 
 const SignUp = () => {
   const { signUp, profileUpdate, googleSignIn, setloader, logOut } =
@@ -21,11 +22,11 @@ const SignUp = () => {
 
   const [createdUserEmail, setCreatedUserEmail] = useState("");
 
-  // const [token] = useToke(createdUserEmail);
+  const [token] = useToken(createdUserEmail);
 
-  // if (token) {
-  //   navigate(from, { replace: true });
-  // }
+  if (token) {
+    navigate(from, { replace: true });
+  }
 
   const handleRegister = (data) => {
     // sign up implement

@@ -1,6 +1,7 @@
 import { useQuery } from "@tanstack/react-query";
 import React, { useContext, useState } from "react";
 import toast from "react-hot-toast";
+import { FaTrashAlt } from "react-icons/fa";
 import Swal from "sweetalert2";
 import { AuthContext } from "../../../context/AuthProvider";
 
@@ -59,7 +60,6 @@ const MyProducts = () => {
   // handle advertise
 
   const handleAdvertise = (product) => {
-    console.log(product);
     const advertiseProduct = {
       name: product.product_name,
       productId: product._id,
@@ -92,10 +92,10 @@ const MyProducts = () => {
       <div className="w-16 h-16 border-4 border-dashed rounded-full animate-spin border-violet-400"></div>
     </div>;
   }
-  console.log(myProducts);
+
   return (
     <div className="mt-8 px-14">
-      <h2 className="text-2xl">All Users</h2>
+      <h2 className="text-3xl font-semibold">My Product</h2>
       <div className="overflow-x-auto  rounded-lg mt-6">
         <table className="table w-full table-zebra">
           <thead>
@@ -109,7 +109,7 @@ const MyProducts = () => {
             </tr>
           </thead>
           <tbody>
-            {myProducts?.length &&
+            {myProducts?.length > 0 &&
               myProducts?.map((product, index) => {
                 return (
                   <tr className="hover" key={index}>
@@ -134,12 +134,10 @@ const MyProducts = () => {
                       )}
                     </td>
                     <td>
-                      <button
-                        className="btn btn-sm btn-error"
+                      <FaTrashAlt
+                        className="text-3xl text-red-500 cursor-pointer"
                         onClick={() => handleDeleteProduct(product)}
-                      >
-                        Delete
-                      </button>
+                      />
                     </td>
                   </tr>
                 );
