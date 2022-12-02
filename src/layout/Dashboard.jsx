@@ -4,6 +4,14 @@ import { AuthContext } from "../context/AuthProvider";
 import useAdmin from "../hooks/useAdmin";
 import useUserRole from "../hooks/useUserRole";
 import Header from "../shared/header/Header";
+import {
+  AiOutlinePlusCircle,
+  AiOutlineCodeSandbox,
+  AiOutlineShoppingCart,
+  AiOutlineUserAdd,
+  AiOutlineUserSwitch,
+} from "react-icons/ai";
+import { CgMenuMotion } from "react-icons/cg";
 
 const Dashboard = () => {
   const { user } = useContext(AuthContext);
@@ -13,6 +21,15 @@ const Dashboard = () => {
   return (
     <div>
       <Header></Header>
+      <div className="text-center">
+        <label
+          tabIndex={0}
+          className="btn btn-ghost lg:hidden text-center"
+          htmlFor="dashboard-drawyer"
+        >
+          <CgMenuMotion className="text-2xl" />
+        </label>
+      </div>
       <div className="drawer drawer-mobile">
         <input
           id="dashboard-drawyer"
@@ -27,27 +44,42 @@ const Dashboard = () => {
           <ul className="menu p-4 w-80 bg-base-100 text-base-content">
             {isAdmin && (
               <>
-                <li className="mb-2">
-                  <Link to="/dashboard/sellers">Seller</Link>
+                <li className="mb-2 border-y-2 shadow-md border-y-accent">
+                  <Link to="/dashboard/sellers">
+                    <AiOutlineUserAdd className="text-2xl text-emerald-400" />{" "}
+                    Seller
+                  </Link>
                 </li>
-                <li className="mb-2">
-                  <Link to="/dashboard/buyers">Buyers</Link>
+                <li className="mb-2 border-b-2 shadow-md border-y-accent">
+                  <Link to="/dashboard/buyers">
+                    <AiOutlineUserSwitch className="text-2xl text-emerald-400" />{" "}
+                    Buyers
+                  </Link>
                 </li>
               </>
             )}
             {userRole === "seller" && (
               <>
-                <li className="mb-2">
-                  <Link to="/dashboard/addproduct">Add Product</Link>
+                <li className="mb-2 border-y-2 shadow-md border-y-accent">
+                  <Link to="/dashboard/addproduct">
+                    <AiOutlinePlusCircle className="text-2xl text-emerald-400" />{" "}
+                    Add Product
+                  </Link>
                 </li>
-                <li className="mb-2">
-                  <Link to="/dashboard/myproduct">My Product</Link>
+                <li className="mb-2 border-b-2 shadow-md border-y-accent">
+                  <Link to="/dashboard/myproduct">
+                    <AiOutlineCodeSandbox className="text-2xl text-emerald-400" />{" "}
+                    My Product
+                  </Link>
                 </li>
               </>
             )}
             {userRole === "buyer" && (
-              <li>
-                <Link to="/dashboard/myorders">My Orders</Link>
+              <li className="border-y-2 shadow-md border-y-accent">
+                <Link to="/dashboard/myorders">
+                  <AiOutlineShoppingCart className="text-2xl text-emerald-400" />{" "}
+                  My Orders
+                </Link>
               </li>
             )}
           </ul>

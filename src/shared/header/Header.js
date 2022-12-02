@@ -4,6 +4,8 @@ import { FaUserAlt } from "react-icons/fa";
 import logo from "../../assets/images/logo.png";
 import { AuthContext } from "../../context/AuthProvider";
 import toast from "react-hot-toast";
+import { TfiLayoutMenuV } from "react-icons/tfi";
+import { CgMenuGridO, CgMenuMotion } from "react-icons/cg";
 
 const Header = () => {
   const { user, logOut } = useContext(AuthContext);
@@ -41,19 +43,6 @@ const Header = () => {
           Home
         </NavLink>
       </li>
-
-      {/* <li className="md:pl-8">
-        <NavLink
-          to="/appointment"
-          className={({ isActive }) =>
-            isActive
-              ? "py-2 md:p-2 rounded-lg bg-slate-600 text-slate-300"
-              : undefined
-          }
-        >
-          Appoinment
-        </NavLink>
-      </li> */}
 
       {user?.email && (
         <li className="md:pl-8">
@@ -104,26 +93,13 @@ const Header = () => {
     <div className="p-5 md:px-24 md:py-5 relative mb-5">
       <div className="navbar bg-base-100">
         <div className="navbar-start">
-          <label
+          {/* <label
             tabIndex={0}
             className="btn btn-ghost lg:hidden"
             htmlFor="dashboard-drawyer"
           >
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              className="h-5 w-5"
-              fill="none"
-              viewBox="0 0 24 24"
-              stroke="currentColor"
-            >
-              <path
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                strokeWidth="2"
-                d="M4 6h16M4 12h8m-8 6h16"
-              />
-            </svg>
-          </label>
+            <CgMenuMotion className="text-2xl" />
+          </label> */}
           <Link to="/" className="flex items-center">
             <img src={logo} alt="" className="h-10 mr-1" />
             Alike New
@@ -140,20 +116,7 @@ const Header = () => {
           </div>
           <div className="dropdown">
             <label tabIndex={1} className="btn btn-ghost lg:hidden">
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                className="h-5 w-5"
-                fill="none"
-                viewBox="0 0 24 24"
-                stroke="currentColor"
-              >
-                <path
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  strokeWidth="2"
-                  d="M4 6h16M4 12h8m-8 6h16"
-                />
-              </svg>
+              <CgMenuGridO className="text-2xl" />
             </label>
             <ul
               tabIndex={2}

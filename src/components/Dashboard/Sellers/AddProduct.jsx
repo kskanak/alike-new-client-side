@@ -25,8 +25,6 @@ const AddProduct = () => {
     },
   });
 
-  console.log(seller.status);
-
   const {
     register,
     formState: { errors },

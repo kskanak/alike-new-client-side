@@ -24,7 +24,7 @@ const Sellers = () => {
 
   const handleDeleteSeller = (seller) => {
     Swal.fire({
-      title: `You sure wanna delete ${seller.name}?`,
+      title: `You sure wanna delete ${seller.user}?`,
       text: "You won't be able to revert this!",
       icon: "warning",
       showCancelButton: true,
@@ -33,7 +33,7 @@ const Sellers = () => {
       confirmButtonText: "Yes, delete it!",
     }).then((result) => {
       if (result.isConfirmed) {
-        fetch(`http://localhost:5000/doctors/${seller?._id}`, {
+        fetch(`http://localhost:5000/allbuyer/${seller?._id}`, {
           method: "DELETE",
           headers: {
             authorization: `Bearer ${localStorage.getItem("alikeNewToken")}`,
@@ -62,9 +62,8 @@ const Sellers = () => {
     })
       .then((res) => res.json())
       .then((data) => {
-        console.log(data);
         if (data.modifiedCount > 0) {
-          toast.info("seller verified given");
+          toast.success("seller verified given");
           refetch();
         }
       })

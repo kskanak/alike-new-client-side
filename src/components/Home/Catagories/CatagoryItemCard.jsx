@@ -1,38 +1,44 @@
 import { useQuery } from "@tanstack/react-query";
-import React, { useContext } from "react";
+import React, { useContext, useEffect, useState } from "react";
+import { TiTickOutline } from "react-icons/ti";
 import { AuthContext } from "../../../context/AuthProvider";
 
 const CatagoryItemCard = ({ item, setCatagoryName, setItem }) => {
   const { user } = useContext(AuthContext);
-
-  const {
-    data: seller = [],
-    isLoading,
-    refetch,
-  } = useQuery({
-    queryKey: ["email", "seller"],
-    queryFn: async () => {
-      const res = await fetch(`http://localhost:5000/seller/${user?.email}`);
-      const data = await res.json();
-      return data;
-    },
-  });
+  const [sellerStatus, SetSellerStatus] = useState("");
 
   const {
     catagory,
     catagory_id,
     condition,
     img,
-    status,
     location,
     original_price,
     post_time,
     product_name,
     sell_price,
     seller_name,
+    email,
     years_used,
   } = item;
-  setCatagoryName(catagory);
+
+  // const { data: seller = [] } = useQuery({
+  //   queryKey: [item?.email],
+  //   queryFn: async () => {
+  //     if (item?.email) {
+  //       const res = await fetch(`http://localhost:5000/seller/${item?.email}`);
+  //       const data = await res.json();
+  //       return data;
+  //     }
+  //   },
+  // });
+  useEffect(() => {
+    if (email) {
+      fetch(`http://localhost:5000/seller/${email}`)
+        .then((res) => res.json())
+        .then((data) => SetSellerStatus(data));
+    }
+  }, [email]);
 
   return (
     <div className="px-16 md:px-32 my-8">
@@ -43,8 +49,16 @@ const CatagoryItemCard = ({ item, setCatagoryName, setItem }) => {
 
         <div className="card-body  md:justify-center">
           <h2 className="card-title">{product_name}</h2>
-          <h2> Seller Name : {seller_name}</h2>
-          {status === "verified" && <h2> Added By Verified Seller</h2>}
+          <h2 className="flex items-center">
+            {" "}
+            Seller Name : {seller_name}{" "}
+            {sellerStatus?.status === "verified" && (
+              <TiTickOutline className="text-4xl text-blue-300" />
+            )}
+          </h2>
+          {sellerStatus?.status === "verified" && (
+            <h2> Added By Verified Seller</h2>
+          )}
           <h2> From : {location}</h2>
           <h2> Brand :{catagory}</h2>
           <h2> Condition : {condition}</h2>
