@@ -16,7 +16,7 @@ const MyProducts = () => {
     queryKey: [user?.email],
     queryFn: async () => {
       const res = await fetch(
-        `http://localhost:5000/sellerProducts/${user?.email}`
+        `https://alike-new-server-side.vercel.app/sellerProducts/${user?.email}`
       );
       const data = await res.json();
       return data;
@@ -35,12 +35,15 @@ const MyProducts = () => {
       confirmButtonText: "Yes, delete it!",
     }).then((result) => {
       if (result.isConfirmed) {
-        fetch(`http://localhost:5000/deleteSellerProduct/${product?._id}`, {
-          method: "DELETE",
-          headers: {
-            authorization: `Bearer ${localStorage.getItem("alikeNewToken")}`,
-          },
-        })
+        fetch(
+          `https://alike-new-server-side.vercel.app/deleteSellerProduct/${product?._id}`,
+          {
+            method: "DELETE",
+            headers: {
+              authorization: `Bearer ${localStorage.getItem("alikeNewToken")}`,
+            },
+          }
+        )
           .then((res) => res.json())
           .then((data) => {
             if (data.deletedCount > 0) {
@@ -69,7 +72,7 @@ const MyProducts = () => {
       orginal_price: product.original_price,
     };
 
-    fetch("http://localhost:5000/advertise", {
+    fetch("https://alike-new-server-side.vercel.app/advertise", {
       method: "POST",
       headers: {
         "content-type": "application/json",

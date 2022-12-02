@@ -4,7 +4,7 @@ const useUserRole = (email) => {
   const [userRole, setUserRole] = useState("");
   useEffect(() => {
     if (email) {
-      fetch(`http://localhost:5000/users/role/${email}`)
+      fetch(`https://alike-new-server-side.vercel.app/users/role/${email}`)
         .then((res) => res.json())
         .then((data) => setUserRole(data.role))
         .catch((error) => console.log(error));

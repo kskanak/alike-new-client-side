@@ -10,7 +10,7 @@ const AdvertiseProducts = () => {
   } = useQuery({
     queryKey: ["advertise"],
     queryFn: async () => {
-      const res = await fetch("http://localhost:5000/advertise", {
+      const res = await fetch("https://alike-new-server-side.vercel.app/advertise", {
         headers: {
           authorization: `Bearer ${localStorage.getItem("alikeNewToken")}`,
         },

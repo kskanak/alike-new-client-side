@@ -11,7 +11,7 @@ const Buyers = () => {
   } = useQuery({
     queryKey: ["allseller"],
     queryFn: async () => {
-      const res = await fetch("http://localhost:5000/allbuyer", {
+      const res = await fetch("https://alike-new-server-side.vercel.app/allbuyer", {
         headers: {
           authorization: `Bearer ${localStorage.getItem("alikeNewToken")}`,
         },
@@ -33,7 +33,7 @@ const Buyers = () => {
       confirmButtonText: "Yes, delete it!",
     }).then((result) => {
       if (result.isConfirmed) {
-        fetch(`http://localhost:5000/allbuyer/${buyer?._id}`, {
+        fetch(`https://alike-new-server-side.vercel.app/allbuyer/${buyer?._id}`, {
           method: "DELETE",
           headers: {
             authorization: `Bearer ${localStorage.getItem("alikeNewToken")}`,

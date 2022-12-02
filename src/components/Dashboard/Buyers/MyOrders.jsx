@@ -9,7 +9,7 @@ const MyOrders = () => {
   const [loading, setLoading] = useState(true);
   useEffect(() => {
     axios
-      .get(`http://localhost:5000/myorders/${user?.email}`, {
+      .get(`https://alike-new-server-side.vercel.app/myorders/${user?.email}`, {
         headers: {
           "content-type": "application/json",
           authorization: `Bearer ${localStorage.getItem("alikeNewToken")}`,

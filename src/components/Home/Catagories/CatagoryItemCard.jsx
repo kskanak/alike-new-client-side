@@ -22,19 +22,9 @@ const CatagoryItemCard = ({ item, setCatagoryName, setItem }) => {
     years_used,
   } = item;
 
-  // const { data: seller = [] } = useQuery({
-  //   queryKey: [item?.email],
-  //   queryFn: async () => {
-  //     if (item?.email) {
-  //       const res = await fetch(`http://localhost:5000/seller/${item?.email}`);
-  //       const data = await res.json();
-  //       return data;
-  //     }
-  //   },
-  // });
   useEffect(() => {
     if (email) {
-      fetch(`http://localhost:5000/seller/${email}`)
+      fetch(`https://alike-new-server-side.vercel.app/seller/${email}`)
         .then((res) => res.json())
         .then((data) => SetSellerStatus(data));
     }

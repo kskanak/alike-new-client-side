@@ -48,7 +48,7 @@ const Login = () => {
       email: email,
     };
 
-    fetch("http://localhost:5000/users", {
+    fetch("https://alike-new-server-side.vercel.app/users", {
       method: "POST",
       headers: {
         "content-type": "application/json",

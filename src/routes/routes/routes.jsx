@@ -28,7 +28,7 @@ const router = createBrowserRouter([
         path: "/catagory/:catagory",
         loader: async ({ params }) => {
           return fetch(
-            `http://localhost:5000/catagoryItemss/${params.catagory}`
+            `https://alike-new-server-side.vercel.app/catagoryItemss/${params.catagory}`
           );
         },
         element: (

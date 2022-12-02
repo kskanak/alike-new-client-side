@@ -19,7 +19,9 @@ const AddProduct = () => {
   } = useQuery({
     queryKey: ["email", "seller"],
     queryFn: async () => {
-      const res = await fetch(`http://localhost:5000/seller/${user?.email}`);
+      const res = await fetch(
+        `https://alike-new-server-side.vercel.app/seller/${user?.email}`
+      );
       const data = await res.json();
       return data;
     },
@@ -47,6 +49,7 @@ const AddProduct = () => {
         if (imageData.success) {
           const product = {
             product_name: data.name,
+            discription: data.discription,
             sell_price: data.price,
             status: seller.status,
             years_used: data.yearused,
@@ -60,7 +63,7 @@ const AddProduct = () => {
             img: imageData.data.image.url,
           };
           // save product  to db
-          fetch("http://localhost:5000/catagoryProduct", {
+          fetch("https://alike-new-server-side.vercel.app/catagoryProduct", {
             method: "POST",
             headers: {
               "content-type": "application/json",
@@ -219,6 +222,43 @@ const AddProduct = () => {
             <option value={"Good"}>Good</option>
             <option value={"Fair"}>Fair</option>
           </select>
+        </div>
+
+        {/*discription input  */}
+
+        <div className="space-y-1 text-sm mb-4">
+          <label
+            htmlFor="email"
+            className="block dark:text-gray-400 font-medium"
+          >
+            Item discription
+          </label>
+
+          <input
+            type="text"
+            className="w-full px-4 py-3 rounded-md input input-bordered "
+            {...register("discription", {
+              required: "Must provide a discription",
+            })}
+          />
+          {errors.discription && (
+            <div className="flex items-center text-red-500">
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                fill="none"
+                viewBox="0 0 24 24"
+                className="stroke-red-400 flex-shrink-0 w-6 h-6 mr-1"
+              >
+                <path
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  strokeWidth="2"
+                  d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"
+                ></path>
+              </svg>
+              <span>{errors.discription?.message}</span>
+            </div>
+          )}
         </div>
 
         {/*yearused input  */}
